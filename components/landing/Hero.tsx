@@ -1,30 +1,33 @@
 'use client'
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import Image from "next/image";
+import CTAButton from "@/components/CTAButton";
 
 export default function Hero() {
     return (
         <section className="relative overflow-hidden py-24 md:py-32">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,191,99,0.15),transparent_70%)]" />
+            <div className="absolute inset-0 z-0">
+                <Image
+                    src="/background.png"
+                    alt="Background"
+                    fill
+                    className="object-cover"
+                    priority
+                />
+            </div>
 
-            <div className="relative mx-auto flex max-w-4xl flex-col items-center justify-center px-4 text-center">
-                <h1 className="text-5xl font-bold tracking-tight text-black md:text-7xl">
-                    <span className="text-[var(--bb-deep)]">Beyond Branding.</span> <br className="hidden md:block" /> Real Business Growth.
+            <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center justify-center px-4 text-center">
+                <h1 className="flex flex-col items-center gap-[19px] text-5xl font-bold tracking-tight text-black md:text-7xl font-sans">
+                    <span className="bg-gradient-to-b from-[#00BF63] to-[#1B5E20] bg-clip-text pb-2 text-transparent">Beyond Branding.</span>
+                    <span>Real Business Growth.</span>
                 </h1>
 
-                <p className="mt-6 max-w-2xl text-lg text-black/60 md:text-xl">
+                <p className="mt-6 max-w-2xl text-base text-black/60 font-sans">
                     We help <span className="font-semibold text-black">B2B founders & experts</span> generate <span className="font-semibold text-black">qualified, high-intent leads</span> through a repeatable <span className="font-semibold text-black">LinkedIn Content + DM Outreach system</span>.
                 </p>
 
-                <div className="mt-10 w-full max-w-md">
-                    <Button
-                        className="w-full rounded-full bg-[var(--bb-green)] py-7 text-lg text-black hover:bg-[var(--bb-mint)]"
-                        onClick={() => document.getElementById("growth-plan")?.scrollIntoView({ behavior: "smooth" })}
-                    >
-                        Get a Free Growth Plan
-                        <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
+                <div className="mt-10 w-full max-w-md flex flex-col items-center">
+                    <CTAButton />
                     <p className="mt-4 text-xs text-black/40">
                         Stop posting and hoping. Start building a lead engine.
                     </p>
