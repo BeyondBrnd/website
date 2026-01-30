@@ -16,7 +16,7 @@ const Logo = () => (
 export default function Header() {
     return (
         <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
-            <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+            <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-[13.5px]">
                 <Logo />
                 <CTAButton />
             </div>

@@ -39,7 +39,7 @@ export default function BeyondbrndLanding() {
       <VSL />
 
       {/* SYSTEM */}
-      <SystemGrowth />
+      {/* <SystemGrowth /> */}
 
       {/* WORK WITH US */}
       <WorkWithUs />

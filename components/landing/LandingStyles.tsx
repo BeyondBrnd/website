@@ -2,8 +2,8 @@
 import React from 'react'
 
 export default function LandingStyles() {
-    return (
-        <style jsx global>{`
+  return (
+    <style jsx global>{`
       :root{
         --bb-green: #00bf63;
         --bb-deep:  #007a3d;
@@ -23,6 +23,16 @@ export default function LandingStyles() {
         animation: marquee 18s linear infinite;
       }
       .marquee:hover{ animation-play-state: paused; }
+      @keyframes marquee-reverse {
+        from { transform: translateX(-50%); }
+        to   { transform: translateX(0); }
+      }
+      .marquee-reverse {
+        display:flex;
+        width: max-content;
+        animation: marquee-reverse 18s linear infinite;
+      }
+      .marquee-reverse:hover{ animation-play-state: paused; }
       @keyframes tmarquee {
         from { transform: translateX(0); }
         to   { transform: translateX(-50%); }
@@ -34,5 +44,5 @@ export default function LandingStyles() {
       }
       .tmarquee:hover{ animation-play-state: paused; }
     `}</style>
-    )
+  )
 }
