@@ -1,11 +1,19 @@
 "use client";
 
-import React, { useEffect, useState, ReactNode } from "react";
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  ReactNode,
+} from "react";
 import { motion } from "framer-motion";
 
 interface Beam {
-  id: number;
+  id: string;
   x: number;
+  startY: number; // NEW: random starting point
   duration: number;
 }
 
@@ -14,53 +22,106 @@ interface BackgroundMeteorsProps {
 }
 
 export default function BackgroundMeteors({ children }: BackgroundMeteorsProps) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
   const [beams, setBeams] = useState<Beam[]>([]);
+  const [containerHeight, setContainerHeight] = useState<number>(0);
+
   const gridSize = 40;
   const totalLines = 35;
 
+  /**
+   * Pixels traveled per second.
+   * Smaller = slower beams.
+   */
+  const BEAM_SPEED = 120;
+
+  useLayoutEffect(() => {
+    if (!containerRef.current) return;
+
+    const el = containerRef.current;
+
+    const update = () => {
+      setContainerHeight(el.getBoundingClientRect().height);
+    };
+
+    update();
+
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+
+    return () => ro.disconnect();
+  }, []);
+
   const generateSafeGridPositions = (count: number): number[] => {
     const available: number[] = [];
-    for (let i = 0; i < totalLines - 1; i++) {
-      available.push(i);
-    }
+    for (let i = 0; i < totalLines - 1; i++) available.push(i);
 
     const selected: number[] = [];
     while (available.length > 0 && selected.length < count) {
       const idx = Math.floor(Math.random() * available.length);
       const value = available[idx];
       selected.push(value);
-      available.splice(
-        0,
-        available.length,
-        ...available.filter((v) => Math.abs(v - value) > 1)
-      );
+
+      const filtered = available.filter((v) => Math.abs(v - value) > 1);
+      available.splice(0, available.length, ...filtered);
     }
 
     return selected.map((line) => line * gridSize);
   };
 
   useEffect(() => {
+    if (!containerHeight) return;
+
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+
     const generateBeams = () => {
       const count = Math.floor(Math.random() * 2) + 3;
       const xPositions = generateSafeGridPositions(count);
 
-      const newBeams: Beam[] = xPositions.map((x) => ({
-        id: Math.random(),
-        x,
-        duration: 4 + Math.random() * 1.5,
-      }));
+      const endY = containerHeight + 200;
+
+      const newBeams: Beam[] = xPositions.map((x) => {
+        // Start at a random point from above the container to somewhere in the top portion
+        // (-200) means slightly off-screen above, up to 30% of the container height.
+        const startY =
+          -200 + Math.random() * Math.max(1, containerHeight * 0.3 + 200);
+
+        const distance = endY - startY;
+
+        // Add a tiny speed variance so they don't feel mechanically identical
+        const speed = BEAM_SPEED * (0.85 + Math.random() * 0.3);
+
+        return {
+          id: crypto.randomUUID(),
+          x,
+          startY,
+          duration: distance / speed,
+        };
+      });
 
       setBeams(newBeams);
 
       const maxDuration = Math.max(...newBeams.map((b) => b.duration));
-      setTimeout(generateBeams, (maxDuration - 0.5) * 1000);
+      timeoutId = setTimeout(generateBeams, (maxDuration - 0.8) * 1000);
     };
 
     generateBeams();
-  }, []);
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [containerHeight]);
+
+  const endY = useMemo(() => {
+    return containerHeight + 200;
+  }, [containerHeight]);
 
   return (
-    <div className="relative flex h-[80vh] w-full items-center justify-center overflow-hidden bg-black">
+    <div
+      ref={containerRef}
+      className="relative flex h-[80vh] w-full items-center justify-center overflow-hidden bg-black"
+    >
       {/* Green grid */}
       <div
         className="absolute inset-0"
@@ -71,7 +132,7 @@ export default function BackgroundMeteors({ children }: BackgroundMeteorsProps) 
         }}
       />
 
-      {/* Soft green fade so edges don’t feel harsh */}
+      {/* Soft green fade */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -86,8 +147,8 @@ export default function BackgroundMeteors({ children }: BackgroundMeteorsProps) 
           key={b.id}
           className="absolute top-0"
           style={{ left: b.x, zIndex: 2 }}
-          initial={{ y: -150 }}
-          animate={{ y: "100%" }}
+          initial={{ y: b.startY }}   // NEW: each beam starts at its own random Y
+          animate={{ y: endY }}        // all travel to the same bottom end point
           transition={{
             duration: b.duration,
             ease: "linear",
