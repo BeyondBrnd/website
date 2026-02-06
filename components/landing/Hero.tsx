@@ -1,37 +1,61 @@
-'use client'
-import React from "react";
-import Image from "next/image";
-import CTAButton from "@/components/CTAButton";
-import BackgroundWaves from "./BackgroundWaves";
+// components/landing/Hero.tsx
+'use client';
+
+import React from 'react';
+import CTAButton from '@/components/CTAButton';
+import BackgroundMeteors from '@/components/ui/backgroundmeteors';
+import Typeanimation from '@/components/ui/typeanimation';
 
 export default function Hero() {
     return (
-        <section className="relative overflow-hidden py-24 md:py-32">
+        <section className="relative overflow-hidden">
+            <BackgroundMeteors>
+                {/* Reduced height hero */}
+                <div className="relative mx-auto flex min-h-[60vh] max-w-6xl items-center justify-center px-4 py-16 md:py-20">
+                    <div className="w-full max-w-4xl text-center">
+                        {/* Headline */}
+                        <div className="space-y-3">
+                            <div className="text-5xl font-extrabold tracking-tight text-white md:text-7xl">
+                                Tired of
+                            </div>
 
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_top,rgba(0,191,99,0.25),transparent_80%)] pointer-events-none" />
+                            {/* Type Animation */}
+                            <div className="flex justify-center">
+                                <Typeanimation
+                                    words={[
+                                        'No LinkedIn Presence',
+                                        'Random outreach',
+                                        'No Clear ICP',
+                                        'No list building strategy',
+                                        'No targeted outreach',
+                                        'No perfect message',
+                                        'No leads in the pipeline',
+                                    ]}
+                                    typingSpeed="slow"
+                                    deletingSpeed="slow"
+                                    pauseDuration={1400}
+                                    className="text-2xl font-extrabold tracking-tight text-[#00BF63] md:text-5xl"
+                                />
+                            </div>
+                        </div>
 
-            {/* Animated Waves */}
-            {/* <BackgroundWaves /> */}
+                        {/* Big supporting line */}
+                        <p className="mx-auto mt-8 max-w-3xl text-2xl font-extrabold leading-tight text-white md:text-4xl">
+                            We have a repeatable LinkedIn Content + DM Outreach system for you.
+                        </p>
 
-            {/* Content */}
-            <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center justify-center px-4 text-center">
-                <h1 className="flex flex-col items-center gap-[19px] text-5xl font-bold tracking-tight text-black md:text-7xl font-sans">
-                    <span className="bg-gradient-to-b from-[#00BF63] to-[#1B5E20] bg-clip-text pb-2 text-transparent">Beyond Branding.</span>
-                    <span>Real Business Growth.</span>
-                </h1>
+                        {/* Subline */}
+                        <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white/75 md:text-lg">
+                            Stop posting and hoping. Start building a lead engine.
+                        </p>
 
-                <p className="mt-6 max-w-2xl text-base text-black/60 font-sans">
-                    We help <span className="font-semibold text-black">B2B founders & experts</span> generate <span className="font-semibold text-black">qualified, high-intent leads</span> through a repeatable <span className="font-semibold text-black">LinkedIn Content + DM Outreach system</span>.
-                </p>
-
-                <div className="mt-10 w-full max-w-md flex flex-col items-center">
-                    <CTAButton />
-                    <p className="mt-4 text-xs text-black/40">
-                        Stop posting and hoping. Start building a lead engine.
-                    </p>
+                        {/* CTA */}
+                        <div className="mt-8 flex flex-col items-center">
+                            <CTAButton />
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </BackgroundMeteors>
         </section>
     );
-} 
+}

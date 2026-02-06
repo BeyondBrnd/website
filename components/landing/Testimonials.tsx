@@ -1,182 +1,213 @@
 'use client'
 
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
+import { Star, Quote, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { ArrowRight } from 'lucide-react'
+import CTAButton from '../CTAButton'
 
 type Testimonial = {
-    rating: string
     name: string
     date: string
+    rating: number
     text: string
 }
 
 export default function Testimonials() {
-    const rowOne: Testimonial[] = useMemo(
+    const testimonials: Testimonial[] = useMemo(
         () => [
             {
-                rating: '5/5',
+                name: 'Harjot',
+                date: '—',
+                rating: 5,
+                text:
+                    "I had a great time chatting with Bharti. She cleared a lot of 'fake beliefs' I had on outreach and content. Most people give copy-paste advice to everyone, but I liked how she understood my business, offers, and goals and gave specific advice and an action plan to move forward with content and outreach. Appreciate it very much!",
+            },
+            {
                 name: 'Nithin Mohan',
                 date: '26th Jun, 2024',
+                rating: 5,
                 text:
-                    "I had a great time chatting with Bharti. She cleared a lot of ‘fake beliefs’ I had about outreach and content. Most people give generic advice — she actually understood my business and gave a clear action plan.",
+                    "I just finished my call with Bharti. I couldn't believe the information I got from her. She was able to identify the mistakes I was making with my business and guide me thoroughly. At the end, I asked if it was too much for a free session and if there was any way I could give back. I am very confident about the next steps to take for my agency 💯.",
             },
             {
-                rating: '5/5',
-                name: 'Ankit Verma',
-                date: '12th May, 2024',
+                name: 'Ganesh',
+                date: '24th Jul, 2023',
+                rating: 5,
                 text:
-                    'Very practical session. The clarity around ICP, messaging, and positioning was spot on. I walked away knowing exactly what to fix and what to double down on.',
+                    'The session with Bharti was value-packed. Not only did she answer each query in a detailed manner, but she also managed to provide numerous insights in such a short time. It was truly impressive! I highly recommend booking a 1:1 call with Bharti. Her expertise and guidance will undoubtedly be invaluable to your professional journey.',
             },
             {
-                rating: '5/5',
-                name: 'Rohit Bansal',
-                date: '3rd Apr, 2024',
+                name: 'Alisha',
+                date: '22nd Jul, 2023',
+                rating: 4,
                 text:
-                    'No fluff. Just solid thinking and honest feedback. Helped me realise where my outreach was breaking and how to make it sharper.',
-            },
-        ],
-        []
-    )
-
-    const rowTwo: Testimonial[] = useMemo(
-        () => [
-            {
-                rating: '5/5',
-                name: 'Sneha Kulkarni',
-                date: '18th Jun, 2024',
-                text:
-                    'This call saved me months of trial and error. Bharti connected the dots between content, offers, and conversations really well.',
+                    'Nothing fancy, but just a plain thank you for being all ears. She is a patient person and read me between the lines. Consequently, delivered what I was looking for. In short, she is your go-to mentor.',
             },
             {
-                rating: '5/5',
-                name: 'Aditya Rao',
-                date: '7th May, 2024',
+                name: 'Shamim Khan',
+                date: '20th Jul, 2023',
+                rating: 5,
                 text:
-                    'Loved how structured the thinking was. Clear takeaways, no vague motivation talk. Exactly what I needed at this stage.',
+                    'She is an incredible listener and an amazing trainer. Learned a lot from her. If you are joining for any membership or as a client, she will blow your mind. Just give it a try with her.',
             },
             {
-                rating: '5/5',
-                name: 'Kunal Shah',
-                date: '22nd Mar, 2024',
+                name: 'Jatin',
+                date: '18th Jul, 2023',
+                rating: 5,
                 text:
-                    'One of the most valuable strategy calls I’ve had. Helped me refine my positioning and stop chasing the wrong leads.',
+                    'Thank you so much, Bharti, for this amazing session. It adds so much value to my LinkedIn. I will also recommend your services to my friends and colleagues in the industry. I believe this session will help me grow professionally. Thanks again, Bharti!',
+            },
+            {
+                name: 'Shashank Nigam',
+                date: '17th Jul, 2023',
+                rating: 5,
+                text:
+                    'This 1:1 call with Bharti was very insightful and handled in a detailed manner. She answered all my questions on the call in a very humble way. It is very nice to have a mentor like her.',
             },
         ],
         []
     )
 
     return (
-        <section
-            className="border-y bg-white"
-            style={{
-                background:
-                    'radial-gradient(900px 500px at 50% 0%, rgba(16,185,129,0.18), rgba(255,255,255,0) 65%)',
-            }}
-        >
-            <div className="mx-auto max-w-6xl px-4 py-16">
-                {/* Header */}
-                <h2 className="text-center text-3xl font-semibold tracking-tight md:text-4xl">
-                    Testimonials
-                </h2>
-
-                {/* Marquee rows */}
-                <div className="mt-12 space-y-8 overflow-hidden">
-                    {/* Row 1 → */}
-                    <div className="relative">
-                        <div className="marquee marquee-forward">
-                            {[...rowOne, ...rowOne].map((t, i) => (
-                                <TestimonialCard key={`r1-${i}`} {...t} />
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Row 2 ← */}
-                    <div className="relative">
-                        <div className="marquee marquee-reverse">
-                            {[...rowTwo, ...rowTwo].map((t, i) => (
-                                <TestimonialCard key={`r2-${i}`} {...t} />
-                            ))}
-                        </div>
-                    </div>
+        <section className="bg-[#F8F8F8] py-20 sm:py-28">
+            <div className="mx-auto max-w-7xl px-4">
+                <div className="text-center">
+                    <h2 className="text-3xl font-semibold sm:text-4xl">
+                        What Our Clients Say
+                    </h2>
+                    <p className="mt-3 text-sm text-black/60">
+                        Real feedback from founders and experts we’ve worked with.
+                    </p>
                 </div>
 
-                {/* CTA */}
-                <div className="mt-12 flex justify-center">
-                    <Button
-                        size="lg"
-                        className="rounded-full bg-[var(--bb-green)] text-black hover:bg-[var(--bb-mint)]"
-                        onClick={() =>
-                            document
-                                .getElementById('growth-plan')
-                                ?.scrollIntoView({ behavior: 'smooth' })
-                        }
-                    >
-                        Get a Free Growth Plan
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
+                <div className="mt-12">
+                    <KineticTestimonials testimonials={testimonials} />
+                </div>
+
+                <div className="mt-14 flex justify-center">
+                    <CTAButton />
                 </div>
             </div>
+        </section>
+    )
+}
 
-            {/* Marquee styles */}
+/* ===============================
+   Vertical kinetic testimonials
+   – seamless pause/resume per column
+================================ */
+
+function KineticTestimonials({
+    testimonials,
+}: {
+    testimonials: Testimonial[]
+}) {
+    const [pausedCol, setPausedCol] = useState<number | null>(null)
+
+    const columns = useMemo(() => {
+        const arr: Testimonial[][] = [[], [], []]
+        testimonials.forEach((t, i) => arr[i % 3].push(t))
+        return arr.map((c) => [...c, ...c])
+    }, [testimonials])
+
+    return (
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            {columns.map((col, idx) => {
+                const reverse = idx % 2 === 1
+                const isPaused = pausedCol === idx
+
+                return (
+                    <div
+                        key={idx}
+                        className="relative h-[620px] overflow-hidden rounded-2xl"
+                        onMouseEnter={() => setPausedCol(idx)}
+                        onMouseLeave={() => setPausedCol(null)}
+                    >
+                        <div
+                            className={`bb-track ${reverse ? 'bb-down' : 'bb-up'}`}
+                            style={{
+                                animationPlayState: isPaused ? 'paused' : 'running',
+                            }}
+                        >
+                            {col.map((t, i) => (
+                                <div key={i} className="py-3">
+                                    <TestimonialCard t={t} />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )
+            })}
+
             <style jsx>{`
-        .marquee {
+        .bb-track {
           display: flex;
-          gap: 24px;
-          width: max-content;
+          flex-direction: column;
+          will-change: transform;
+          animation-duration: 28s;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
         }
 
-        .marquee-forward {
-          animation: marquee-left 35s linear infinite;
+        .bb-up {
+          animation-name: scroll-up;
         }
 
-        .marquee-reverse {
-          animation: marquee-right 40s linear infinite;
+        .bb-down {
+          animation-name: scroll-down;
         }
 
-        @keyframes marquee-left {
+        @keyframes scroll-up {
           from {
-            transform: translateX(0);
+            transform: translateY(0%);
           }
           to {
-            transform: translateX(-50%);
+            transform: translateY(-50%);
           }
         }
 
-        @keyframes marquee-right {
+        @keyframes scroll-down {
           from {
-            transform: translateX(-50%);
+            transform: translateY(-50%);
           }
           to {
-            transform: translateX(0);
+            transform: translateY(0%);
           }
         }
       `}</style>
-        </section>
+        </div>
     )
 }
 
 /* ---------------- Card ---------------- */
 
-function TestimonialCard({
-    rating,
-    name,
-    date,
-    text,
-}: Testimonial) {
+function TestimonialCard({ t }: { t: Testimonial }) {
+    const initials = t.name.charAt(0)
+
     return (
-        <div className="min-w-[340px] max-w-[360px] rounded-3xl bg-[#faf8f5] p-6 shadow-sm">
-            <div className="text-xs font-semibold text-black">★ {rating}</div>
+        <div className="rounded-2xl border bg-white p-7 shadow-sm">
+            <Quote className="mb-3 h-6 w-6 text-[var(--bb-green)] opacity-30" />
 
-            <p className="mt-3 text-sm leading-6 text-black/80">{text}</p>
+            <div className="mb-3 flex gap-1">
+                {Array.from({ length: t.rating }).map((_, i) => (
+                    <Star
+                        key={i}
+                        className="h-4 w-4 fill-[var(--bb-green)] text-[var(--bb-green)]"
+                    />
+                ))}
+                <span className="ml-2 text-sm font-semibold">{t.rating}/5</span>
+            </div>
 
-            <div className="mt-5 text-sm font-semibold">{name}</div>
-            <div className="text-xs text-black/50">{date}</div>
+            <p className="text-sm leading-7 text-gray-700">“{t.text}”</p>
 
-            <div className="mt-4 flex justify-end">
-                <span className="rounded-full bg-[var(--bb-green)] px-4 py-1 text-xs font-medium text-black">
-                    Share ↗
-                </span>
+            <div className="mt-5 flex items-center gap-3 border-t pt-4">
+                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--bb-green)] text-white">
+                    {initials}
+                </div>
+                <div>
+                    <div className="text-sm font-semibold">{t.name}</div>
+                    <div className="text-xs text-gray-500">{t.date}</div>
+                </div>
             </div>
         </div>
     )
