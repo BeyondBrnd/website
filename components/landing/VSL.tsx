@@ -2,7 +2,6 @@
 
 import React from 'react'
 import CTAButton from '../CTAButton'
-import { CosmicBackground } from '@/components/ui/cosmic-background'
 
 export default function VSL() {
     return (
