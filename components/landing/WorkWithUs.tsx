@@ -1,87 +1,295 @@
 'use client'
 
 import React, { useMemo } from 'react'
+import {
+    PhoneCall,
+    Settings2,
+    Layers3,
+    MessagesSquare,
+    Sparkles,
+    Lock,
+    Check,
+} from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 type Step = {
-    step: string
+    phase: string
     title: string
-    desc: string
+    bullets: string[]
+    isSecret?: boolean
 }
 
 export default function WorkWithUs() {
     const steps: Step[] = useMemo(
         () => [
             {
-                step: 'Step 1',
+                phase: 'Step 1',
                 title: 'Book a Clarity Call',
-                desc: 'We understand your requirements, offer, ICP, positioning, and conversion goal.',
+                bullets: [
+                    'Understand your offer, ICP, and positioning',
+                    'Define the conversion goal (calls / demos / pipeline)',
+                    'Align on timeline, expectations, and execution cadence',
+                ],
             },
             {
-                step: 'Step 2',
+                phase: 'Step 2',
                 title: 'System Setup',
-                desc: 'We discuss Content plan + profile optimization + outreach targeting using Clay that brings qualified leads.',
+                bullets: [
+                    'Profile optimization for inbound credibility',
+                    'Content direction aligned to ICP pain + intent',
+                    'Outreach targeting framework + operating rhythm',
+                ],
             },
             {
-                step: 'Step 3',
+                phase: 'Step 3',
                 title: 'Clay Setup & Integration',
-                desc: 'We set up Clay to build and enrich targeted lead lists for LinkedIn and email outreach — hypertargeted and personalized.',
+                bullets: [
+                    'Build and enrich lead lists for LinkedIn + email',
+                    'Hypertargeting by role, signal, and intent',
+                    'Personalization at scale with clean data',
+                ],
             },
             {
-                step: 'Step 4',
+                phase: 'Step 4',
                 title: 'Leads & Conversations',
-                desc: 'You get a steady stream of high-intent conversations in your DMs.',
+                bullets: [
+                    'Consistent high-intent conversations in your DMs',
+                    'Qualify responses and iterate messaging',
+                    'Book calls from a repeatable pipeline',
+                ],
+            },
+            {
+                phase: 'Step 5',
+                title: 'Secret Sauce',
+                bullets: [
+                    'Offer upgrades + conversion hooks',
+                    'Messaging loops that compound replies',
+                    'Targeting tweaks that unlock “why now” intent',
+                ],
+                isSecret: true,
             },
         ],
         []
     )
 
     return (
-        <section
-            className="bg-white"
-            style={{
-                background:
-                    'radial-gradient(900px 500px at 50% 0%, rgba(16,185,129,0.20), rgba(255,255,255,0) 65%), linear-gradient(180deg, rgba(16,185,129,0.10) 0%, rgba(255,255,255,1) 42%)',
-            }}
-        >
-            <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
-                {/* Title */}
-                <h2 className="text-center text-3xl font-semibold tracking-tight md:text-4xl">
-                    Work With Us
-                </h2>
+        <section className="bb-workwithus">
+            <div className="mx-auto max-w-7xl px-4 py-16 md:py-20">
+                {/* 2-col layout: left sticky + right scrolling cards */}
+                <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
+                    {/* LEFT (sticky like your screenshots) */}
+                    <div className="lg:col-span-5">
+                        <div className="bb-left-sticky">
+                            <div className="bb-pill">OUR PROCESS</div>
 
-                {/* Steps */}
-                <div className="mt-12 space-y-14 md:mt-16 md:space-y-20">
-                    {steps.map((s, idx) => {
-                        const isEven = idx % 2 === 1 // Step 2, 4 on the right in screenshot
-                        return (
-                            <div
-                                key={s.title}
-                                className="grid items-center gap-10 md:grid-cols-2 md:gap-14"
-                            >
-                                {/* Text block */}
-                                <div className={isEven ? 'md:order-2' : 'md:order-1'}>
-                                    <div className="inline-flex rounded-full bg-emerald-600 px-5 py-2 text-sm font-semibold text-white shadow-sm">
-                                        {s.step}
-                                    </div>
+                            <h2 className="mt-4 text-4xl font-semibold leading-[1.05] tracking-tight text-black sm:text-5xl">
+                                Work With Us:
+                                <br />
+                                <span className="text-[var(--bb-green)]">From Call to Pipeline</span>
+                            </h2>
 
-                                    <h3 className="mt-4 text-2xl font-semibold tracking-tight text-black md:text-3xl">
-                                        {s.title}
-                                    </h3>
+                            <p className="mt-4 max-w-md text-sm leading-6 text-black/65 sm:text-[15px]">
+                                This stays pinned while you scroll the steps—just like the “90 Days”
+                                timeline UX. Each card is a phase in the system.
+                            </p>
 
-                                    <p className="mt-3 max-w-md text-sm leading-6 text-black/70 md:text-[15px]">
-                                        {s.desc}
-                                    </p>
-                                </div>
-
-                                {/* Image/placeholder block */}
-                                <div className={isEven ? 'md:order-1' : 'md:order-2'}>
-                                    <div className="h-[220px] w-full rounded-3xl bg-neutral-200 md:h-[240px]" />
-                                </div>
+                            <div className="mt-8">
+                                <Button
+                                    className="rounded-full bg-[var(--bb-green)] px-6 text-black hover:bg-[var(--bb-mint)]"
+                                    onClick={() =>
+                                        document
+                                            .getElementById('growth-plan')
+                                            ?.scrollIntoView({ behavior: 'smooth' })
+                                    }
+                                >
+                                    Get a Free Growth Plan →
+                                </Button>
                             </div>
-                        )
-                    })}
+
+                            <div className="mt-6 flex items-center gap-3 text-xs text-black/55">
+                                <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-black/5">
+                                    <Check className="h-4 w-4 text-[var(--bb-green)]" />
+                                </span>
+                                <span>Execution-led. No fluff. Built for B2B founders & experts.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* RIGHT (stacked cards scrolling) */}
+                    <div className="lg:col-span-7">
+                        <div className="space-y-6 sm:space-y-8">
+                            {steps.map((s, idx) => (
+                                <PhaseCard key={s.title} step={s} index={idx} />
+                            ))}
+                        </div>
+
+                        {/* Spacer so left stays pinned until the end of the last card */}
+                        <div className="h-12 sm:h-16" />
+                    </div>
                 </div>
             </div>
+
+            <style jsx>{`
+        .bb-workwithus {
+          background: radial-gradient(
+              900px 500px at 50% 0%,
+              rgba(16, 185, 129, 0.18),
+              rgba(255, 255, 255, 0) 65%
+            ),
+            linear-gradient(
+              180deg,
+              rgba(16, 185, 129, 0.1) 0%,
+              rgba(255, 255, 255, 1) 42%
+            );
+        }
+
+        /* Sticky only on large screens (matches the UX you want) */
+        .bb-left-sticky {
+          position: static;
+        }
+        @media (min-width: 1024px) {
+          .bb-left-sticky {
+            position: sticky;
+            top: 110px; /* adjust if your header height differs */
+            padding-bottom: 24px;
+          }
+        }
+
+        .bb-pill {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 10px 16px;
+          border-radius: 999px;
+          font-size: 11px;
+          letter-spacing: 0.08em;
+          font-weight: 700;
+          color: rgba(0, 0, 0, 0.7);
+          border: 1px solid rgba(0, 191, 99, 0.22);
+          background: rgba(255, 255, 255, 0.7);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+        }
+      `}</style>
         </section>
+    )
+}
+
+function PhaseCard({ step, index }: { step: Step; index: number }) {
+    const Icon =
+        index === 0
+            ? PhoneCall
+            : index === 1
+                ? Settings2
+                : index === 2
+                    ? Layers3
+                    : index === 3
+                        ? MessagesSquare
+                        : Sparkles
+
+    return (
+        <div className="bb-phase-card">
+            <div className="flex items-start justify-between gap-4">
+                <div className="min-w-0">
+                    <div className="bb-phase-pill">{step.phase}</div>
+                    <h3 className="mt-3 text-xl font-semibold tracking-tight text-black sm:text-2xl">
+                        {step.title}
+                    </h3>
+                </div>
+
+                <div className="bb-icon">
+                    {step.isSecret ? <Lock className="h-5 w-5" /> : <Icon className="h-5 w-5" />}
+                </div>
+            </div>
+
+            <ul className="mt-4 space-y-3">
+                {step.bullets.map((b, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                        <span className="mt-[7px] h-2 w-2 rounded-[3px] bg-[var(--bb-green)]" />
+                        <span className={step.isSecret ? 'bb-secret' : 'bb-text'}>{b}</span>
+                    </li>
+                ))}
+            </ul>
+
+            {step.isSecret && (
+                <div className="mt-5 bb-secret-note">
+                    Details are revealed after the clarity call.
+                </div>
+            )}
+
+            <style jsx>{`
+        .bb-phase-card {
+          border-radius: 18px;
+          border: 1px solid rgba(0, 0, 0, 0.08);
+          background: rgba(255, 255, 255, 0.78);
+          box-shadow: 0 18px 46px rgba(0, 0, 0, 0.08);
+          padding: 22px 22px;
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          transition: transform 180ms ease, box-shadow 180ms ease,
+            border-color 180ms ease;
+        }
+
+        .bb-phase-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 22px 60px rgba(0, 0, 0, 0.12);
+          border-color: rgba(0, 191, 99, 0.25);
+        }
+
+        .bb-phase-pill {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 7px 12px;
+          border-radius: 999px;
+          font-size: 11px;
+          letter-spacing: 0.06em;
+          font-weight: 800;
+          color: rgba(0, 0, 0, 0.65);
+          background: rgba(0, 0, 0, 0.04);
+          border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .bb-icon {
+          height: 42px;
+          width: 42px;
+          border-radius: 999px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(0, 191, 99, 0.12);
+          border: 1px solid rgba(0, 191, 99, 0.18);
+          color: rgba(0, 0, 0, 0.72);
+          flex-shrink: 0;
+        }
+
+        .bb-text {
+          color: rgba(0, 0, 0, 0.62);
+          font-size: 13px;
+          line-height: 1.6;
+        }
+
+        .bb-secret {
+          color: rgba(0, 0, 0, 0.55);
+          font-size: 13px;
+          line-height: 1.6;
+          filter: blur(4px);
+          user-select: none;
+        }
+
+        .bb-secret-note {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 8px 12px;
+          border-radius: 999px;
+          font-size: 12px;
+          font-weight: 700;
+          color: rgba(0, 0, 0, 0.6);
+          background: rgba(0, 0, 0, 0.04);
+          border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+      `}</style>
+        </div>
     )
 }
