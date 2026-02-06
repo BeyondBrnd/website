@@ -27,7 +27,7 @@ export default function BeyondbrndLanding() {
       {/* NAV */}
       <Header />
 
-      <CounselLikeCanvasBg />
+      {/* <CounselLikeCanvasBg /> */}
 
       {/* HERO */}
       <Hero />
