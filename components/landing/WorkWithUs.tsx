@@ -11,6 +11,7 @@ import {
     Check,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import CTAButton from '../CTAButton'
 
 type Step = {
     phase: string
@@ -88,22 +89,14 @@ export default function WorkWithUs() {
                                 <span className="text-[var(--bb-green)]">From Call to Pipeline</span>
                             </h2>
 
+                            {/* This will need to be updated by Bharti */}
                             <p className="mt-4 max-w-md text-sm leading-6 text-black/65 sm:text-[15px]">
                                 This stays pinned while you scroll the steps—just like the “90 Days”
                                 timeline UX. Each card is a phase in the system.
                             </p>
 
                             <div className="mt-8">
-                                <Button
-                                    className="rounded-full bg-[var(--bb-green)] px-6 text-black hover:bg-[var(--bb-mint)]"
-                                    onClick={() =>
-                                        document
-                                            .getElementById('growth-plan')
-                                            ?.scrollIntoView({ behavior: 'smooth' })
-                                    }
-                                >
-                                    Get a Free Growth Plan →
-                                </Button>
+                                <CTAButton />
                             </div>
 
                             <div className="mt-6 flex items-center gap-3 text-xs text-black/55">
