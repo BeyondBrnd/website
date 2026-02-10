@@ -45,7 +45,7 @@ export default function Hero() {
                         </p>
 
                         {/* Subline */}
-                        <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white/75 md:text-lg">
+                        <p className="mx-auto mt-4 max-w-2xl text-base italic leading-7 text-white/75 md:text-lg">
                             Stop posting and hoping. Start building a lead engine.
                         </p>
 

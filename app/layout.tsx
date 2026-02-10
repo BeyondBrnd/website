@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import CustomCursor from "@/components/ui/CustomCursor";
 
 const cerebri = localFont({
   src: [
@@ -49,8 +50,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${cerebri.variable} antialiased`}
+        className={`${cerebri.variable} antialiased selection:bg-[#00BF63]/30 selection:text-white`}
       >
+        <CustomCursor />
         {children}
       </body>
     </html>
