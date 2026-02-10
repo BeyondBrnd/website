@@ -184,3 +184,9 @@
     top: 15%;
   }
 }
+
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
