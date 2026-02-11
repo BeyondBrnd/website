@@ -10,7 +10,6 @@ import {
     Lock,
     Check,
 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import CTAButton from '../CTAButton'
 
 type Step = {
@@ -62,10 +61,15 @@ export default function WorkWithUs() {
             {
                 phase: 'Step 5',
                 title: 'Secret Sauce',
+                // bullets: [
+                //     'Offer upgrades + conversion hooks',
+                //     'Messaging loops that compound replies',
+                //     'Targeting tweaks that unlock “why now” intent',
+                // ],
                 bullets: [
-                    'Offer upgrades + conversion hooks',
-                    'Messaging loops that compound replies',
-                    'Targeting tweaks that unlock “why now” intent',
+                    'O**** h**** u******** + c**** h****',
+                    'M******** l**** t*** c******** r****',
+                    'T******** t******** t*** u****** “w** n**” i****',
                 ],
                 isSecret: true,
             },
@@ -76,9 +80,7 @@ export default function WorkWithUs() {
     return (
         <section className="bb-workwithus">
             <div className="mx-auto max-w-7xl px-4 py-16 md:py-20">
-                {/* 2-col layout: left sticky + right scrolling cards */}
                 <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
-                    {/* LEFT (sticky like your screenshots) */}
                     <div className="lg:col-span-5">
                         <div className="bb-left-sticky">
                             <div className="bb-pill">OUR PROCESS</div>
@@ -89,11 +91,10 @@ export default function WorkWithUs() {
                                 <span className="text-[var(--bb-green)]">From Call to Pipeline</span>
                             </h2>
 
-                            {/* This will need to be updated by Bharti */}
-                            <p className="mt-4 max-w-md text-sm leading-6 text-black/65 sm:text-[15px]">
+                            {/* <p className="mt-4 max-w-md text-sm leading-6 text-black/65 sm:text-[15px]">
                                 This stays pinned while you scroll the steps—just like the “90 Days”
                                 timeline UX. Each card is a phase in the system.
-                            </p>
+                            </p> */}
 
                             <div className="mt-8">
                                 <CTAButton />
@@ -108,7 +109,6 @@ export default function WorkWithUs() {
                         </div>
                     </div>
 
-                    {/* RIGHT (stacked cards scrolling) */}
                     <div className="lg:col-span-7">
                         <div className="space-y-6 sm:space-y-8">
                             {steps.map((s, idx) => (
@@ -116,7 +116,6 @@ export default function WorkWithUs() {
                             ))}
                         </div>
 
-                        {/* Spacer so left stays pinned until the end of the last card */}
                         <div className="h-12 sm:h-16" />
                     </div>
                 </div>
@@ -136,14 +135,13 @@ export default function WorkWithUs() {
             );
         }
 
-        /* Sticky only on large screens (matches the UX you want) */
         .bb-left-sticky {
           position: static;
         }
         @media (min-width: 1024px) {
           .bb-left-sticky {
             position: sticky;
-            top: 110px; /* adjust if your header height differs */
+            top: 110px;
             padding-bottom: 24px;
           }
         }
@@ -180,6 +178,8 @@ function PhaseCard({ step, index }: { step: Step; index: number }) {
                         ? MessagesSquare
                         : Sparkles
 
+    const SECRET_LINK = 'https://www.linkedin.com/in/bhartichilkoti/'
+
     return (
         <div className="bb-phase-card">
             <div className="flex items-start justify-between gap-4">
@@ -191,7 +191,19 @@ function PhaseCard({ step, index }: { step: Step; index: number }) {
                 </div>
 
                 <div className="bb-icon">
-                    {step.isSecret ? <Lock className="h-5 w-5" /> : <Icon className="h-5 w-5" />}
+                    {step.isSecret ? (
+                        <a
+                            href={SECRET_LINK}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bb-lock-wrapper"
+                        >
+                            <Lock className="h-5 w-5" />
+                            <span className="bb-tooltip">Book a free call</span>
+                        </a>
+                    ) : (
+                        <Icon className="h-5 w-5" />
+                    )}
                 </div>
             </div>
 
@@ -199,7 +211,9 @@ function PhaseCard({ step, index }: { step: Step; index: number }) {
                 {step.bullets.map((b, i) => (
                     <li key={i} className="flex items-start gap-3">
                         <span className="mt-[7px] h-2 w-2 rounded-[3px] bg-[var(--bb-green)]" />
-                        <span className={step.isSecret ? 'bb-secret' : 'bb-text'}>{b}</span>
+                        <span className={step.isSecret ? 'bb-secret' : 'bb-text'}>
+                            {b}
+                        </span>
                     </li>
                 ))}
             </ul>
@@ -254,6 +268,37 @@ function PhaseCard({ step, index }: { step: Step; index: number }) {
           border: 1px solid rgba(0, 191, 99, 0.18);
           color: rgba(0, 0, 0, 0.72);
           flex-shrink: 0;
+          position: relative;
+        }
+
+        .bb-lock-wrapper {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+          width: 100%;
+        }
+
+        .bb-tooltip {
+          position: absolute;
+          bottom: 115%;
+          left: 50%;
+          transform: translateX(-50%) translateY(4px);
+          background: black;
+          color: white;
+          font-size: 11px;
+          padding: 6px 8px;
+          border-radius: 6px;
+          white-space: nowrap;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 150ms ease, transform 150ms ease;
+        }
+
+        .bb-lock-wrapper:hover .bb-tooltip {
+          opacity: 1;
+          transform: translateX(-50%) translateY(0);
         }
 
         .bb-text {
