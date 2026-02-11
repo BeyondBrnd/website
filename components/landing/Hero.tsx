@@ -86,7 +86,7 @@ export default function Hero() {
                                 <Typeanimation
                                     words={[
                                         'No LinkedIn Presence',
-                                        'Random Outreach on dev',
+                                        'Random outreach',
                                         'No Clear ICP',
                                         'No list building strategy',
                                         'No targeted outreach',
