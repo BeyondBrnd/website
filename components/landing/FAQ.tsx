@@ -12,7 +12,7 @@ const faqs = [
     {
         question: "Do you guarantee results?",
         answer:
-            "We don’t guarantee outcomes. We guarantee the process: consistent targeting, messaging, and execution. Results depend on offer-market fit, pricing, and response handling.",
+            "We guarantee the process, not the outcomes. Our process: consistent targeting, messaging, and execution. Results depend on offer-market fit, pricing, and response handling.",
     },
     {
         question: "Do you only work with B2B?",
@@ -22,7 +22,7 @@ const faqs = [
     {
         question: "What do you need from me to start?",
         answer:
-            "Your offer details, target customer examples, access to your LinkedIn profile, and any existing proof like case studies or testimonials.",
+            "Please share details about your offer, examples of your target customers, a link to your LinkedIn profile, any existing proof of results such as case studies or testimonials, and a company brief in PDF format.",
     },
 ];
 
@@ -55,8 +55,7 @@ export default function FAQ() {
                             </div>
 
                             <p className="mb-4 text-sm leading-6 text-black/60">
-                                Can&apos;t find the answer you&apos;re looking for? Please chat
-                                with our friendly team.
+                                Can&apos;t find the answer you&apos;re looking for? Feel free to contact the co-founder.
                             </p>
 
                             <a
