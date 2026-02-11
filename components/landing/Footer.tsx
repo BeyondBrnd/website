@@ -8,29 +8,6 @@ export default function Footer() {
                 <div className="text-sm text-black/60">
                     © {new Date().getFullYear()} beyondbrnd • Marketing & Business Growth Agency
                 </div>
-                <div className="flex flex-wrap items-center gap-3">
-                    <a
-                        className="text-sm font-medium text-black/70 hover:text-black"
-                        href="#"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            document.getElementById("growth-plan")?.scrollIntoView({ behavior: "smooth" });
-                        }}
-                    >
-                        Get a Free Growth Plan
-                    </a>
-                    <span className="text-black/20">•</span>
-                    <a
-                        className="text-sm font-medium text-black/70 hover:text-black"
-                        href="#"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            document.getElementById("vsl")?.scrollIntoView({ behavior: "smooth" });
-                        }}
-                    >
-                        VSL
-                    </a>
-                </div>
             </div>
         </footer>
     );
