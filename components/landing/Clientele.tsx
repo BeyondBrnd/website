@@ -84,7 +84,7 @@ export default function Clientele() {
   );
 
   return (
-    <section className="bg-white">
+    <section className="relative bg-white -mt-20 z-20">
       <div className="mx-auto max-w-6xl px-4 py-10">
         <div className="mx-auto max-w-6xl px-4 pb-10 pt-0">
           <div className="flex justify-center">
@@ -111,7 +111,6 @@ export default function Clientele() {
           font-weight: 600;
           font-size: 16px;
           letter-spacing: -0.02em;
-          border: 1px solid rgba(0, 191, 99, 0.28);
           backdrop-filter: blur(10px);
           -webkit-backdrop-filter: blur(10px);
         }
