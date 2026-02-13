@@ -88,7 +88,9 @@ export default function Clientele() {
       <div className="mx-auto max-w-6xl px-4 py-10">
         <div className="mx-auto max-w-6xl px-4 pb-10 pt-0">
           <div className="flex justify-center">
-            <div className="bb-pill">Trusted By</div>
+            <div className="bb-pill"> <h2 className="text-3xl font-semibold sm:text-4xl">
+              Trusted By
+            </h2></div>
           </div>
         </div>
 

@@ -178,7 +178,7 @@ function PhaseCard({ step, index }: { step: Step; index: number }) {
                         ? MessagesSquare
                         : Sparkles
 
-    const SECRET_LINK = 'https://www.linkedin.com/in/bhartichilkoti/'
+    const SECRET_LINK = 'https://calendly.com/bharti-beyondbrnd/30min'
 
     return (
         <div className="bb-phase-card">
